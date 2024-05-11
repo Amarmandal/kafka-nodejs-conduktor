@@ -1,0 +1,20 @@
+{
+  "name": "kafka-msg-validation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:consumer": "nodemon consumer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ip": "^2.0.1",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
