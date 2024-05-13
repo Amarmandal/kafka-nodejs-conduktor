@@ -7,6 +7,8 @@ async function main() {
     await consumer.connect();
     await consumer.subscribe({ topics: ["test-topic"], fromBeginning: true });
 
+    console.log("connected successfully");
+
     await consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
         console.log({
