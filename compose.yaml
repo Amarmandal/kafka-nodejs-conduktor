@@ -48,9 +48,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - KAFKA_CLUSTERS_0_NAME=my-cluster
+      - KAFKA_CLUSTERS_0_NAME=local-cluster
       - KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS=kafka_broker_1:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER_CONNECT=zookeeper:2181
+      - DYNAMIC_CONFIG_ENABLED=true
+      - AUTH_TYPE=LOGIN_FORM
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=pass
+
     depends_on:
       - kafka_broker_1
     restart: always
