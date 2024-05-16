@@ -8,10 +8,10 @@ services:
     environment:
       - ZOOKEEPER_CLIENT_PORT=2181
       - ZOOKEEPER_TICK_TIME=3000
-    # volumes:
-    #   - "./storage/zookeeper/data:/var/lib/zookeeper/data"
-    #   - "./storage/zookeeper/log:/var/lib/zookeeper/log"
-    #   - "./storage/zookeeper/secrets:/var/lib/zookeeper/secrets"
+
+    volumes:
+      - ./zookeeper/data:/var/lib/zookeeper/data
+      - ./zookeeper/logs:/var/lib/zookeeper/logs
 
   kafka_broker_1:
     container_name: kafka_broker_1
@@ -19,9 +19,8 @@ services:
     ports:
       - "9092:9092"
       - "9093:9093"
+
     environment:
-      # - KAFKA_AUTO_CREATE_TOPICS_ENABLE= "true"
-      # Uniquely identify each broker in a Kafka cluster.
       - KAFKA_BROKER_ID=1
       # Name of zookeeper where broker should connect
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
@@ -37,6 +36,9 @@ services:
       - KAFKA_LOG4J_LOGGERS="kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       # Replication Topic on the all brokers(no of brokers -1)
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+    volumes:
+      - ./kafka/data:/var/lib/kafka/data
 
     # restart: always
     depends_on:
